@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,37 +8,93 @@
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="develop/style.css">
 </head>
+
 <body>
 
     <div id="banner">
         <h1>This is the weather dashboard</h1>
-        <h3>Put Date Here</h3>
-    </div>
-    
-    <div id="citySearch">
-        <h1>Search for a city: </h1>
-        <input type="text" placeholder="search">
+        <hr>
+        <h3 id="todayDate"></h3>
+        <hr>
     </div>
 
-    <div id="currentWeather">
-        <h2>Weather in <span id="chosenCity">Atlanta</span> today</h2>
-        <h4>Temperature: <span id="currentTemp"></span></h4>
-        <h4>Wind: <span id="currentWind"></span></h4>
-        <h4>Humidity: <span id="currentHumidity"></span></h4>
-        <h4>UV Index: <span id="currentUV"></span></h4>
-    </div>
+    <main>
 
-    <div id="weatherForecast">
-
-    </div>
+        <aside id="citySearch">
+            <h1>Search for a city: </h1>
+            <input type="text" placeholder="search">
+            <button>Search</button>
+            <hr>
+        </aside>
 
 
+        <section id="weatherData">
+
+            <div id="currentWeather">
+                <h2>Weather in <span id="chosenCity">Atlanta</span> today</h2>
+                <h4>Temperature: <span id="currentTemp"></span></h4>
+                <h4>Wind: <span id="currentWind"></span></h4>
+                <h4>Humidity: <span id="currentHumidity"></span></h4>
+                <h4>UV Index: <span id="currentUV"></span></h4>
+            </div>
+
+            <div id="weatherForecast">
+
+                <h2>Five day forcast: </h2>
+
+                <div id="weatherForecastCards">
+
+                    <div class="forecastCard" id="day1">
+                        <h3>Date</h3>
+                        <h4>Temp: <span id="temp1"></span></h4>
+                        <h4>Wind: <span id="wind1"></span></h4>
+                        <h4>Humidity: <span id="humidity1"></span></h4>
+                    </div>
+
+                    <div class="forecastCard" id="day2">
+                        <h3>Date</h3>
+                        <h4>Temp: <span id="temp2"></span></h4>
+                        <h4>Wind: <span id="wind2"></span></h4>
+                        <h4>Humidity: <span id="humidity2"></span></h4>
+                    </div>
+
+                    <div class="forecastCard" id="day3">
+                        <h3>Date</h3>
+                        <h4>Temp: <span id="temp3"></span></h4>
+                        <h4>Wind: <span id="wind3"></span></h4>
+                        <h4>Humidity: <span id="humidity3"></span></h4>
+                    </div>
+
+                    <div class="forecastCard" id="day4">
+                        <h3>Date</h3>
+                        <h4>Temp: <span id="temp4"></span></h4>
+                        <h4>Wind: <span id="wind4"></span></h4>
+                        <h4>Humidity: <span id="humidity4"></span></h4>
+                    </div>
+
+                    <div class="forecastCard" id="day5">
+                        <h3>Date</h3>
+                        <h4>Temp: <span id="temp5"></span></h4>
+                        <h4>Wind: <span id="wind5"></span></h4>
+                        <h4>Humidity: <span id="humidity5"></span></h4>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
 
 
 
 
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@1.26.0/build/global/luxon.min.js"></script>
     <script src="develop/script.js"></script>
 </body>
+
 </html>

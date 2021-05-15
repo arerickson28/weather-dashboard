@@ -53,3 +53,11 @@ let chosenOrdinal = getOrdinal() ;
 let dateDisplay = weekday + ", " + month + " " + day + chosenOrdinal + ", " + year ;
 
 currentDay.textContent = dateDisplay ;
+
+
+//api call 
+// https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
+
+console.log(api_key) ;
+
+console.log("hello") ;

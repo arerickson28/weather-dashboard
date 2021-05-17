@@ -79,6 +79,8 @@ fetch(requestUrl).then(function (response) {
     }) ;
 
 
+   
+//----------------------------
 
 
 let cityInput = document.getElementById("cityInput") ;
@@ -87,13 +89,29 @@ let searchButton = document.getElementById("searchButton") ;
 
 let citySearch = "" ;
 
-if (localStorage.getItem("searchHistory") === null) {
-    let searchHistoryArray = [] ;
-    localStorage.setItem("searchHistory", JSON.stringify(searchHistoryArray)) ;
+let recentSearchesDiv = document.getElementById("recentSearches") ; 
+
+let clearSearchButton = document.getElementById("clearSearchButton") ;
+
+function initializePage() {
+    if (localStorage.getItem("searchHistory") === null) {
+        let searchHistoryArray = [] ;
+        localStorage.setItem("searchHistory", JSON.stringify(searchHistoryArray)) ;
+    } else {
+    
+    let searchHistoryArray = JSON.parse(localStorage.getItem("searchHistory")) ;
+
+    for (let i = searchHistoryArray.length -1; i>=0; i--) {
+        let lastSearch = document.createElement("h3") ;
+        lastSearch.textContent = searchHistoryArray[i] ;
+        recentSearchesDiv.appendChild(lastSearch) ;
+    }
+    }
 }
 
+initializePage() ;
 
-searchButton.addEventListener("click", function () {
+function myFunction() {
 
     citySearch = cityInput.value ;
     console.log(citySearch) ;
@@ -102,7 +120,7 @@ searchButton.addEventListener("click", function () {
         return
     }
 
-    searchHistoryArray = JSON.parse(localStorage.getItem("searchHistory")) ;
+    let searchHistoryArray = JSON.parse(localStorage.getItem("searchHistory")) ;
 
     searchHistoryArray.push(citySearch) ;
 
@@ -110,4 +128,59 @@ searchButton.addEventListener("click", function () {
 
     cityInput.value = "" ;
 
+    // let searchHistoryArray = JSON.parse(localStorage.getItem("searchHistory")) ;
+
+    for (let i = searchHistoryArray.length -1; i>=0; i--) {
+        let lastSearch = document.createElement("h3") ;
+        lastSearch.textContent = searchHistoryArray[i] ;
+        recentSearchesDiv.appendChild(lastSearch) ;
+    }
+}
+
+
+
+
+searchButton.addEventListener("click", function () {
+
+    // for (let i = searchHistoryArray.length -1; i>=0; i--) {
+    //     let lastSearch = document.createElement("h3") ;
+    //     lastSearch.setAttribute("class", "recentSearch") ;
+    //     lastSearch.textContent = searchHistoryArray[i] ;
+    //     recentSearchesDiv.appendChild(lastSearch) ;
+    //}
+
+    let element = document.getElementById("recentSearches")
+
+    // let element = document.getElementById("top");
+    while (element.firstChild) {
+    element.removeChild(element.firstChild);
+}
+    myFunction() ;
+
 }) ;
+
+
+
+clearSearchButton.addEventListener("click", function () {
+    clear() ;
+})
+
+
+
+function clear() {
+
+    let element = document.getElementById("recentSearches")
+
+    // let element = document.getElementById("top");
+    while (element.firstChild) {
+    element.removeChild(element.firstChild);
+}
+
+    let searchHistoryArray = localStorage.getItem("searchHistory")
+
+    searchHistoryArray = []
+
+
+
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistoryArray)) ;
+}

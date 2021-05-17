@@ -64,26 +64,38 @@ let cityCoorUrl = "http://api.openweathermap.org/geo/1.0/direct?q="
 
 let weatherApiUrl = "https://api.openweathermap.org/data/2.5/onecall?"
 
-let chosenCity = "sydney"
-
-// Api test example
-var requestUrl = cityCoorUrl + chosenCity + "&limit=10&appid=" + api_key ;
-
-fetch(requestUrl).then(function (response) {
-    return response.json();
-})
-    .then(function (data) {
-        console.log(data)
-        console.log(data[0]["lat"])
-        console.log(data[0]["lon"])
-    }) ;
-
-
-   
-//----------------------------
+let chosenCityEl = document.getElementById("chosenCity") ;
 
 
 let cityInput = document.getElementById("cityInput") ;
+
+// let chosenCity = cityInput.value ;
+
+
+let chosenCity = "" ;
+
+// Api test example
+
+
+function makeApiCall() {
+
+    let requestUrl = cityCoorUrl + chosenCity + "&limit=10&appid=" + api_key ;
+
+    fetch(requestUrl).then(function (response) {
+        return response.json();
+    })
+        .then(function (data) {
+            console.log(data)
+            console.log(data[0]["lat"])
+            console.log(data[0]["lon"])
+            
+           
+            chosenCityEl.textContent = data[0]["name"] ;
+        }) ;
+}
+
+
+//----------------------------
 
 let searchButton = document.getElementById("searchButton") ;
 
@@ -111,7 +123,7 @@ function initializePage() {
 
 initializePage() ;
 
-function myFunction() {
+function populateRecentSearches() {
 
     citySearch = cityInput.value ;
     console.log(citySearch) ;
@@ -138,24 +150,19 @@ function myFunction() {
 }
 
 
-
-
 searchButton.addEventListener("click", function () {
 
-    // for (let i = searchHistoryArray.length -1; i>=0; i--) {
-    //     let lastSearch = document.createElement("h3") ;
-    //     lastSearch.setAttribute("class", "recentSearch") ;
-    //     lastSearch.textContent = searchHistoryArray[i] ;
-    //     recentSearchesDiv.appendChild(lastSearch) ;
-    //}
+    chosenCity = cityInput.value ;
 
-    let element = document.getElementById("recentSearches")
+    makeApiCall() ;
+
+    let recentSearches = document.getElementById("recentSearches")
 
     // let element = document.getElementById("top");
-    while (element.firstChild) {
-    element.removeChild(element.firstChild);
+    while (recentSearches.firstChild) {
+    recentSearches.removeChild(recentSearches.firstChild);
 }
-    myFunction() ;
+    populateRecentSearches() ;
 
 }) ;
 
@@ -169,18 +176,14 @@ clearSearchButton.addEventListener("click", function () {
 
 function clear() {
 
-    let element = document.getElementById("recentSearches")
+    let recentSearches = document.getElementById("recentSearches")
 
-    // let element = document.getElementById("top");
-    while (element.firstChild) {
-    element.removeChild(element.firstChild);
+    while (recentSearches.firstChild) {
+    recentSearches.removeChild(recentSearches.firstChild);
 }
-
     let searchHistoryArray = localStorage.getItem("searchHistory")
 
     searchHistoryArray = []
-
-
 
     localStorage.setItem("searchHistory", JSON.stringify(searchHistoryArray)) ;
 }

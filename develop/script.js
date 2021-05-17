@@ -69,29 +69,65 @@ let chosenCityEl = document.getElementById("chosenCity") ;
 
 let cityInput = document.getElementById("cityInput") ;
 
-// let chosenCity = cityInput.value ;
-
-
 let chosenCity = "" ;
 
-// Api test example
+//------------------------------
+
 
 
 function makeApiCall() {
 
-    let requestUrl = cityCoorUrl + chosenCity + "&limit=10&appid=" + api_key ;
+    let coordinatesRequestUrl = cityCoorUrl + chosenCity + "&limit=10&appid=" + api_key ;
 
-    fetch(requestUrl).then(function (response) {
+    let lat = ""
+
+    let lon = ""
+
+    let weatherRequestUrl =  ""
+
+    console.log(coordinatesRequestUrl)
+
+    //fetch city coordinates
+    fetch(coordinatesRequestUrl).then(function (response) {
         return response.json();
     })
         .then(function (data) {
+
             console.log(data)
             console.log(data[0]["lat"])
             console.log(data[0]["lon"])
+
+            lat = data[0]["lat"]
+            lon = data[0]["lon"]
             
-           
+            console.log(lat) ;
+            weatherRequestUrl = `${weatherApiUrl}lat=${lat}&lon=${lon}&exclude=hourly,minutely&appid=${api_key}`
+            //example api call
+            // weatherRequestUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=" + api_key ;
+
+            fetch(weatherRequestUrl).then(function(response) {
+                // return response.json() ;
+                return response.json() ;
+            })
+                .then(function (weatherData) {
+                    console.log(weatherData) ;
+                }) ;
+
             chosenCityEl.textContent = data[0]["name"] ;
+            // console.log(weatherRequestUrl)
+            console.log(lat)
+            console.log(lon)
         }) ;
+    console.log(lat) ;
+    
+    
+    // fetch city weather
+    console.log(weatherRequestUrl) ;
+  
+    
+
+
+//End makeApiCall
 }
 
 
@@ -105,6 +141,8 @@ let recentSearchesDiv = document.getElementById("recentSearches") ;
 
 let clearSearchButton = document.getElementById("clearSearchButton") ;
 
+//--------------------------------------------------------
+
 function initializePage() {
     if (localStorage.getItem("searchHistory") === null) {
         let searchHistoryArray = [] ;
@@ -117,11 +155,15 @@ function initializePage() {
         let lastSearch = document.createElement("h3") ;
         lastSearch.textContent = searchHistoryArray[i] ;
         recentSearchesDiv.appendChild(lastSearch) ;
-    }
+        }
     }
 }
 
+//--------------------------------------------------------
+
 initializePage() ;
+
+//--------------------------------------------------------
 
 function populateRecentSearches() {
 
@@ -149,6 +191,8 @@ function populateRecentSearches() {
     }
 }
 
+//--------------------------------------------------------
+
 
 searchButton.addEventListener("click", function () {
 
@@ -166,13 +210,13 @@ searchButton.addEventListener("click", function () {
 
 }) ;
 
-
+//--------------------------------------------------------
 
 clearSearchButton.addEventListener("click", function () {
     clear() ;
 })
 
-
+//--------------------------------------------------------
 
 function clear() {
 

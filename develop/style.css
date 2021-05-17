@@ -74,3 +74,8 @@ main {
 #currentWeather h2 {
     margin: 0px ;
 }
+
+button {
+    display: block ;
+    margin-top: 8px; 
+}

@@ -50,21 +50,24 @@ function getOrdinal() {
 
 let chosenOrdinal = getOrdinal();
 
-let dateDisplay = weekday + ", " + month + " " + day + chosenOrdinal + ", " + year;
+let dateDisplay = `${weekday}, ${month} ${day}${chosenOrdinal}, ${year}`
 
 currentDay.textContent = dateDisplay;
 
 
 //api call 
-let cityCoorApi = "http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}"
+let cityCoorApiFormat = "http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}"
 
 let weatherApiCallFormat = "https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}";
 
-let apiUrl = "https://api.openweathermap.org/data/2.5/onecall?"
+let cityCoorUrl = "http://api.openweathermap.org/geo/1.0/direct?q="
 
+let weatherApiUrl = "https://api.openweathermap.org/data/2.5/onecall?"
 
-// fetch request gets a list of all the repos for the node.js organization
-var requestUrl = "http://api.openweathermap.org/geo/1.0/direct?q=minneapolis&limit=1&appid=" + api_key ;
+let chosenCity = "sydney"
+
+// Api test example
+var requestUrl = cityCoorUrl + chosenCity + "&limit=10&appid=" + api_key ;
 
 fetch(requestUrl).then(function (response) {
     return response.json();
@@ -74,3 +77,37 @@ fetch(requestUrl).then(function (response) {
         console.log(data[0]["lat"])
         console.log(data[0]["lon"])
     }) ;
+
+
+
+
+let cityInput = document.getElementById("cityInput") ;
+
+let searchButton = document.getElementById("searchButton") ;
+
+let citySearch = "" ;
+
+if (localStorage.getItem("searchHistory") === null) {
+    let searchHistoryArray = [] ;
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistoryArray)) ;
+}
+
+
+searchButton.addEventListener("click", function () {
+
+    citySearch = cityInput.value ;
+    console.log(citySearch) ;
+
+    if (citySearch === "") {
+        return
+    }
+
+    searchHistoryArray = JSON.parse(localStorage.getItem("searchHistory")) ;
+
+    searchHistoryArray.push(citySearch) ;
+
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistoryArray)) ;
+
+    cityInput.value = "" ;
+
+}) ;

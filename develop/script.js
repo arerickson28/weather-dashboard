@@ -60,7 +60,7 @@ let cityCoorApiFormat = "http://api.openweathermap.org/geo/1.0/direct?q={city na
 
 let weatherApiCallFormat = "https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}";
 
-let cityCoorUrl = "http://api.openweathermap.org/geo/1.0/direct?q="
+let cityCoorUrl = "https://api.openweathermap.org/geo/1.0/direct?q="
 
 let weatherApiUrl = "https://api.openweathermap.org/data/2.5/onecall?"
 

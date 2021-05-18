@@ -102,11 +102,9 @@ function makeApiCall() {
             
             console.log(lat) ;
             weatherRequestUrl = `${weatherApiUrl}lat=${lat}&lon=${lon}&exclude=hourly,minutely&appid=${api_key}`
-            //example api call
-            // weatherRequestUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=" + api_key ;
-
+            
+            //Use lat/lon to get weather
             fetch(weatherRequestUrl).then(function(response) {
-                // return response.json() ;
                 return response.json() ;
             })
                 .then(function (weatherData) {
@@ -114,18 +112,7 @@ function makeApiCall() {
                 }) ;
 
             chosenCityEl.textContent = data[0]["name"] ;
-            // console.log(weatherRequestUrl)
-            console.log(lat)
-            console.log(lon)
         }) ;
-    console.log(lat) ;
-    
-    
-    // fetch city weather
-    console.log(weatherRequestUrl) ;
-  
-    
-
 
 //End makeApiCall
 }

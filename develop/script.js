@@ -118,6 +118,7 @@ function makeApiCall() {
                 .then(function (weatherData) {
                     console.log(weatherData) ;
 
+                    //Main Box
                     currentTempEl.textContent = weatherData["current"]["temp"] ;
 
                     currentWindEl.textContent = weatherData["current"]["wind_speed"] ;
@@ -125,6 +126,18 @@ function makeApiCall() {
                     currentHumidityEl.textContent = weatherData["current"]["humidity"] ;
 
                     currentUVEl.textContent = weatherData["current"]["uvi"] ;
+
+                    //Five day forecast
+
+                    for (let i = 0; i < 5; i++) {
+                       document.getElementById(`date${String(i+1)}`).textContent = weatherData["daily"][i]["dt"]
+
+                       document.getElementById(`temp${String(i+1)}`).textContent = weatherData["daily"][i]["temp"]["day"]
+
+                       document.getElementById(`wind${String(i+1)}`).textContent = weatherData["daily"][i]["wind_speed"]
+
+                       document.getElementById(`humidity${String(i+1)}`).textContent = weatherData["daily"][i]["humidity"]
+                    }
                 }) ;
         }) ;
 

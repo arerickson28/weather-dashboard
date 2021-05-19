@@ -56,9 +56,9 @@ currentDay.textContent = dateDisplay;
 
 
 //api call 
-let cityCoorApiFormat = "http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}"
+// let cityCoorApiFormat = "http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}"
 
-let weatherApiCallFormat = "https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}";
+// let weatherApiCallFormat = "https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}";
 
 let cityCoorUrl = "https://api.openweathermap.org/geo/1.0/direct?q="
 
@@ -70,6 +70,14 @@ let chosenCityEl = document.getElementById("chosenCity") ;
 let cityInput = document.getElementById("cityInput") ;
 
 let chosenCity = "" ;
+
+let currentTempEl = document.getElementById("currentTemp") ;
+
+let currentWindEl = document.getElementById("currentWind") ;
+
+let currentHumidityEl = document.getElementById("currentHumidity") ;
+
+let currentUVEl = document.getElementById("currentUV") ;
 
 //------------------------------
 
@@ -101,17 +109,23 @@ function makeApiCall() {
             lon = data[0]["lon"]
             
             console.log(lat) ;
-            weatherRequestUrl = `${weatherApiUrl}lat=${lat}&lon=${lon}&exclude=hourly,minutely&appid=${api_key}`
-            
+            weatherRequestUrl = `${weatherApiUrl}lat=${lat}&lon=${lon}&units=imperial&exclude=hourly,minutely&appid=${api_key}`
+            chosenCityEl.textContent = data[0]["name"] ;
             //Use lat/lon to get weather
             fetch(weatherRequestUrl).then(function(response) {
                 return response.json() ;
             })
                 .then(function (weatherData) {
                     console.log(weatherData) ;
-                }) ;
 
-            chosenCityEl.textContent = data[0]["name"] ;
+                    currentTempEl.textContent = weatherData["current"]["temp"] ;
+
+                    currentWindEl.textContent = weatherData["current"]["wind_speed"] ;
+
+                    currentHumidityEl.textContent = weatherData["current"]["humidity"] ;
+
+                    currentUVEl.textContent = weatherData["current"]["uvi"] ;
+                }) ;
         }) ;
 
 //End makeApiCall

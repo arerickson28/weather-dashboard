@@ -81,6 +81,8 @@ let currentHumidityEl = document.getElementById("currentHumidity") ;
 
 let currentUVEl = document.getElementById("currentUV") ;
 
+let currentIcon = document.getElementById("currentIcon") ;
+
 //------------------------------
 
 
@@ -129,6 +131,8 @@ function makeApiCall() {
 
                     currentUVEl.textContent = weatherData["current"]["uvi"] ;
 
+                    currentIcon.setAttribute("src", `http://openweathermap.org/img/wn/${weatherData["current"]["weather"][0]["icon"]}@2x.png` )
+
                     //---------------------- 
                     if (currentUVEl.textContent <= 2) {
                         currentUVEl.classList.remove("uvVeryHigh") ;
@@ -161,7 +165,7 @@ function makeApiCall() {
 
                     for (let i = 0; i < 5; i++) {
 
-                        let dateTimeUnix = weatherData["daily"][i]["dt"] ;
+                        let dateTimeUnix = weatherData["daily"][i+1]["dt"] ;
 
                         let dateTimeUnixMil = dateTimeUnix * 1000 ;
 
@@ -173,13 +177,13 @@ function makeApiCall() {
 
                         document.getElementById(`date${String(i+1)}`).textContent = dateObjString ;
 
-                        document.getElementById(`temp${String(i+1)}`).textContent = weatherData["daily"][i]["temp"]["day"]
+                        document.getElementById(`temp${String(i+1)}`).textContent = weatherData["daily"][i+1]["temp"]["day"]
 
-                        document.getElementById(`wind${String(i+1)}`).textContent = weatherData["daily"][i]["wind_speed"]
+                        document.getElementById(`wind${String(i+1)}`).textContent = weatherData["daily"][i+1]["wind_speed"]
 
-                        document.getElementById(`humidity${String(i+1)}`).textContent = weatherData["daily"][i]["humidity"]
+                        document.getElementById(`humidity${String(i+1)}`).textContent = weatherData["daily"][i+1]["humidity"]
 
-                        document.getElementById(`icon${String(i+1)}`).setAttribute("src", `http://openweathermap.org/img/wn/${weatherData["daily"][i]["weather"][0]["icon"]}@2x.png`)
+                        document.getElementById(`icon${String(i+1)}`).setAttribute("src", `http://openweathermap.org/img/wn/${weatherData["daily"][i+1]["weather"][0]["icon"]}@2x.png`)
                     }
                 }) ;
         }) ;

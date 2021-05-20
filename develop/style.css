@@ -26,6 +26,8 @@ body {
     border: solid ;
     padding: 20px ;
     margin-right: 20px ;
+    display: flex; 
+    justify-content: space-between;
 }
 
 #chosenCity {
@@ -115,4 +117,13 @@ button {
     background-color: red ;
     color: white ;
     padding: 5px ;
+}
+
+#currentIconDiv {
+    display: flex ;
+    align-items: center ;
+}
+
+#currentIcon {
+    width: 225px ;
 }

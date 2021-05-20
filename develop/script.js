@@ -127,6 +127,34 @@ function makeApiCall() {
 
                     currentUVEl.textContent = weatherData["current"]["uvi"] ;
 
+                    //---------------------- 
+                    if (currentUVEl.textContent <= 2) {
+                        currentUVEl.classList.remove("uvVeryHigh") ;
+                        currentUVEl.classList.remove("uvHigh") ;
+                        currentUVEl.classList.remove("uvModerate") ;
+                        currentUVEl.classList.add("uvLow") ;
+            
+                    } else if (currentUVEl.textContent <= 5){
+                        currentUVEl.classList.remove("uvVeryHigh") ;
+                        currentUVEl.classList.remove("uvHigh") ;
+                        currentUVEl.classList.remove("uvLow") ;
+                        currentUVEl.classList.add("uvModerate") ;
+            
+                    } else if (currentUVEl.textContent <= 7) {
+                        currentUVEl.classList.remove("uvVeryHigh") ;
+                        currentUVEl.classList.remove("uvModerate") ;
+                        currentUVEl.classList.remove("uvLow") ;
+                        currentUVEl.classList.add("uvHigh") ;
+                    } else {
+                        currentUVEl.classList.remove("uvHigh") ;
+                        currentUVEl.classList.remove("uvModerate") ;
+                        currentUVEl.classList.remove("uvLow") ;
+                        currentUVEl.classList.add("uvVeryHigh") ;
+                    }
+
+                    //---------------------- 
+
+
                     //Five day forecast
 
                     for (let i = 0; i < 5; i++) {
@@ -141,18 +169,14 @@ function makeApiCall() {
 
                         console.log(dateObjString) ;
 
-                       document.getElementById(`date${String(i+1)}`).textContent = dateObjString ;
+                        document.getElementById(`date${String(i+1)}`).textContent = dateObjString ;
 
-                       document.getElementById(`temp${String(i+1)}`).textContent = weatherData["daily"][i]["temp"]["day"]
+                        document.getElementById(`temp${String(i+1)}`).textContent = weatherData["daily"][i]["temp"]["day"]
 
-                       document.getElementById(`wind${String(i+1)}`).textContent = weatherData["daily"][i]["wind_speed"]
+                        document.getElementById(`wind${String(i+1)}`).textContent = weatherData["daily"][i]["wind_speed"]
 
-                       document.getElementById(`humidity${String(i+1)}`).textContent = weatherData["daily"][i]["humidity"]
+                        document.getElementById(`humidity${String(i+1)}`).textContent = weatherData["daily"][i]["humidity"]
                     }
-
-                    // let thing = new Date(1504095567183).toLocaleDateString("en-US")
-                    // console.log(thing)
-
                 }) ;
         }) ;
 

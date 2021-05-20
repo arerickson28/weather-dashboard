@@ -87,3 +87,27 @@ button {
     display: block ;
     margin-top: 8px; 
 }
+
+.uvLow {
+    background-color: green ;
+    color: white ;
+    padding: 5px ;
+}
+
+.uvModerate {
+    background-color: yellow ;
+    color: white ;
+    padding: 5px ;
+}
+
+.uvHigh {
+    background-color: orange ;
+    color: white ;
+    padding: 5px ;
+}
+
+.uvVeryHigh {
+    background-color: red ;
+    color: white ;
+    padding: 5px ;
+}

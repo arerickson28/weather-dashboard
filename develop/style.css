@@ -38,7 +38,7 @@ body {
 
 .forecastCard {
     border: solid ;
-    border-color: yellow ;
+    border-color: rgb(211, 211, 31) ; ;
     margin: 20px ;
     padding: 10px ;
     background-color: grey ;

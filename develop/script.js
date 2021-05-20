@@ -60,6 +60,8 @@ currentDay.textContent = dateDisplay;
 
 // let weatherApiCallFormat = "https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}";
 
+let weatherApiIconFormat = "http://openweathermap.org/img/wn/10d@2x.png"
+
 let cityCoorUrl = "https://api.openweathermap.org/geo/1.0/direct?q="
 
 let weatherApiUrl = "https://api.openweathermap.org/data/2.5/onecall?"
@@ -176,6 +178,8 @@ function makeApiCall() {
                         document.getElementById(`wind${String(i+1)}`).textContent = weatherData["daily"][i]["wind_speed"]
 
                         document.getElementById(`humidity${String(i+1)}`).textContent = weatherData["daily"][i]["humidity"]
+
+                        document.getElementById(`icon${String(i+1)}`).setAttribute("src", `http://openweathermap.org/img/wn/${weatherData["daily"][i]["weather"][0]["icon"]}@2x.png`)
                     }
                 }) ;
         }) ;

@@ -36,6 +36,11 @@ body {
     display: flex ;
 }
 
+
+.forecastCard h4 {
+    margin: 10px ;
+}
+
 .forecastCard {
     border: solid ;
     border-color: rgb(211, 211, 31) ; ;

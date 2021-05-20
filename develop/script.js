@@ -210,13 +210,14 @@ function initializePage() {
         localStorage.setItem("searchHistory", JSON.stringify(searchHistoryArray)) ;
     } else {
     
-    let searchHistoryArray = JSON.parse(localStorage.getItem("searchHistory")) ;
+    populateRecentSearches() ;
+    // let searchHistoryArray = JSON.parse(localStorage.getItem("searchHistory")) ;
 
-    for (let i = searchHistoryArray.length -1; i>=0; i--) {
-        let lastSearch = document.createElement("h3") ;
-        lastSearch.textContent = searchHistoryArray[i] ;
-        recentSearchesDiv.appendChild(lastSearch) ;
-        }
+    // for (let i = searchHistoryArray.length -1; i>=0; i--) {
+    //     let lastSearch = document.createElement("button") ;
+    //     lastSearch.textContent = searchHistoryArray[i] ;
+    //     recentSearchesDiv.appendChild(lastSearch) ;
+    //     }
     }
 }
 
@@ -228,25 +229,45 @@ initializePage() ;
 
 function populateRecentSearches() {
 
-    citySearch = cityInput.value ;
-    console.log(citySearch) ;
+    function addSearchToHistory() {
 
-    if (citySearch === "") {
-        return
+        citySearch = cityInput.value ;
+        console.log(citySearch) ;
+    
+        if (citySearch === "") {
+            return
+        }
+    
+        let searchHistoryArray = JSON.parse(localStorage.getItem("searchHistory")) ;
+    
+        searchHistoryArray.push(citySearch) ;
+    
+        localStorage.setItem("searchHistory", JSON.stringify(searchHistoryArray)) ;
+    
+        cityInput.value = "" ;
+        
     }
+    // citySearch = cityInput.value ;
+    // console.log(citySearch) ;
 
-    let searchHistoryArray = JSON.parse(localStorage.getItem("searchHistory")) ;
-
-    searchHistoryArray.push(citySearch) ;
-
-    localStorage.setItem("searchHistory", JSON.stringify(searchHistoryArray)) ;
-
-    cityInput.value = "" ;
+    // if (citySearch === "") {
+    //     return
+    // }
 
     // let searchHistoryArray = JSON.parse(localStorage.getItem("searchHistory")) ;
 
+    // searchHistoryArray.push(citySearch) ;
+
+    // localStorage.setItem("searchHistory", JSON.stringify(searchHistoryArray)) ;
+
+    // cityInput.value = "" ;
+
+    addSearchToHistory() ;
+
+    let searchHistoryArray = JSON.parse(localStorage.getItem("searchHistory")) ;
+
     for (let i = searchHistoryArray.length -1; i>=0; i--) {
-        let lastSearch = document.createElement("h3") ;
+        let lastSearch = document.createElement("button") ;
         lastSearch.textContent = searchHistoryArray[i] ;
         recentSearchesDiv.appendChild(lastSearch) ;
     }

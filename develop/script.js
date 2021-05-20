@@ -130,7 +130,18 @@ function makeApiCall() {
                     //Five day forecast
 
                     for (let i = 0; i < 5; i++) {
-                       document.getElementById(`date${String(i+1)}`).textContent = weatherData["daily"][i]["dt"]
+
+                        let dateTimeUnix = weatherData["daily"][i]["dt"] ;
+
+                        let dateTimeUnixMil = dateTimeUnix * 1000 ;
+
+                        let dateObj = new Date(dateTimeUnixMil) ;
+
+                        let dateObjString = dateObj.toLocaleDateString("en-US", {month: "numeric", day: "numeric", year: "numeric"}) ;
+
+                        console.log(dateObjString) ;
+
+                       document.getElementById(`date${String(i+1)}`).textContent = dateObjString ;
 
                        document.getElementById(`temp${String(i+1)}`).textContent = weatherData["daily"][i]["temp"]["day"]
 
@@ -138,6 +149,10 @@ function makeApiCall() {
 
                        document.getElementById(`humidity${String(i+1)}`).textContent = weatherData["daily"][i]["humidity"]
                     }
+
+                    // let thing = new Date(1504095567183).toLocaleDateString("en-US")
+                    // console.log(thing)
+
                 }) ;
         }) ;
 

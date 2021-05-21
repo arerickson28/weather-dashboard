@@ -211,13 +211,6 @@ function initializePage() {
     } else {
     
     populateRecentSearches() ;
-    // let searchHistoryArray = JSON.parse(localStorage.getItem("searchHistory")) ;
-
-    // for (let i = searchHistoryArray.length -1; i>=0; i--) {
-    //     let lastSearch = document.createElement("button") ;
-    //     lastSearch.textContent = searchHistoryArray[i] ;
-    //     recentSearchesDiv.appendChild(lastSearch) ;
-    //     }
     }
 }
 
@@ -247,38 +240,47 @@ function populateRecentSearches() {
         cityInput.value = "" ;
         
     }
-    // citySearch = cityInput.value ;
-    // console.log(citySearch) ;
-
-    // if (citySearch === "") {
-    //     return
-    // }
-
-    // let searchHistoryArray = JSON.parse(localStorage.getItem("searchHistory")) ;
-
-    // searchHistoryArray.push(citySearch) ;
-
-    // localStorage.setItem("searchHistory", JSON.stringify(searchHistoryArray)) ;
-
-    // cityInput.value = "" ;
 
     addSearchToHistory() ;
 
     let searchHistoryArray = JSON.parse(localStorage.getItem("searchHistory")) ;
 
     for (let i = searchHistoryArray.length -1; i>=0; i--) {
+
         let lastSearch = document.createElement("button") ;
+
         lastSearch.textContent = searchHistoryArray[i] ;
+
+        console.log(lastSearch.textContent) ;
+
+        lastSearch.setAttribute("type", "button") ;
+
+        lastSearch.setAttribute("class", "btn btn-outline-secondary") ;
+
+        lastSearch.addEventListener("click", function() {
+            chosenCity = lastSearch.textContent ;
+            handleSearch() ;
+        }) ;
+
         recentSearchesDiv.appendChild(lastSearch) ;
     }
 }
 
 //--------------------------------------------------------
 
+clearSearchButton.addEventListener("click", function () {
+    clear() ;
+})
 
-searchButton.addEventListener("click", function () {
+//--------------------------------------------------------
 
+searchButton.addEventListener("click", function() {
     chosenCity = cityInput.value ;
+    handleSearch() ;
+}) ;
+
+//Search Event Handler
+function handleSearch() {
 
     makeApiCall() ;
 
@@ -289,17 +291,10 @@ searchButton.addEventListener("click", function () {
     recentSearches.removeChild(recentSearches.firstChild);
 }
     populateRecentSearches() ;
+}
 
-}) ;
-
-//--------------------------------------------------------
-
-clearSearchButton.addEventListener("click", function () {
-    clear() ;
-})
 
 //--------------------------------------------------------
-
 function clear() {
 
     let recentSearches = document.getElementById("recentSearches")

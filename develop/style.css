@@ -64,10 +64,45 @@ body {
     flex-grow: 1 ;
 }
 
-#citySearch {
+.citySearch1 {
    margin-left: 20px ;
    margin-right: 20px ;
+   display: flex ;
+   align-items: flex-start ;
+   flex-direction: column;
+   justify-content: flex-start;
+   
 }
+
+#citySearch hr {
+    margin-right: 20px ;
+    margin-left: 20px ;
+    height: 1px ;
+    background-color: white ;
+    border-width: 0px ;
+}
+
+.citySearch2 {
+    margin-left: 20px ;
+    margin-right: 20px ;
+    display: flex ;
+    align-items: flex-start ;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.container {
+    padding-left: 0px ;
+}
+
+/* #citySearch hr {
+    display: absolute ;
+} */
+
+/* #hrDiv {
+    flex-direction: row ;
+    /* flex-grow: 1 ; */
+} */
 
 #citySearch h3 {
     color: grey ;

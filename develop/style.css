@@ -1,10 +1,19 @@
 body {
     background-color: lightblue ;
     margin: 0 ;
+    font-family: Georgia, 'Times New Roman', Times, serif
 }
 
-#banner h1, h3, h4{
+#banner h1, h3, h4 {
     color: whitesmoke ;
+}
+
+#banner h1 {
+    margin-top: 16px ;
+}
+
+#banner h3 {
+    margin-top: 8px ;
 }
 
 #banner hr {
@@ -94,15 +103,6 @@ body {
 .container {
     padding-left: 0px ;
 }
-
-/* #citySearch hr {
-    display: absolute ;
-} */
-
-/* #hrDiv {
-    flex-direction: row ;
-    /* flex-grow: 1 ; */
-} */
 
 #citySearch h3 {
     color: grey ;

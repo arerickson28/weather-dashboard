@@ -162,3 +162,7 @@ button {
 #currentIcon {
     width: 225px ;
 }
+
+#weatherForecast h2 {
+    margin-top: 20px ;
+}

@@ -64,7 +64,7 @@ let weatherApiIconFormat = "http://openweathermap.org/img/wn/10d@2x.png"
 
 let cityCoorUrl = "https://api.openweathermap.org/geo/1.0/direct?q="
 
-let weatherApiUrl = "https://api.openweathermap.org/data/2.5/onecall?"
+let weatherApiUrl = "https://api.openweathermap.org/data/3.0/onecall?"
 
 let chosenCityEl = document.getElementById("chosenCity") ;
 

@@ -14,4 +14,4 @@ Inside you will find:
 ![](weather_dash.png)
 
 Link to deployed app:  
-https://arerickson28.github.io/weather-dashboard/
+https://arerickson28-weather-dashboard.up.railway.app/

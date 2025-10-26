@@ -1,0 +1,26 @@
+{
+  "name": "weather-dashboard",
+  "version": "1.0.0",
+  "description": "Web Dev Hw 6",
+  "homepage": "https://github.com/arerickson28/weather-dashboard#readme",
+  "bugs": {
+    "url": "https://github.com/arerickson28/weather-dashboard/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arerickson28/weather-dashboard.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "node-fetch": "^3.3.2",
+    "dotenv": "^16.5.0"
+  }
+}

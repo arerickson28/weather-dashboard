@@ -1,4 +1,3 @@
 .vscode
 .DS_Store
-
-# api_key.js
+.env
